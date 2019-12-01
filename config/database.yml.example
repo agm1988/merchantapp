@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: emerchantpay
+  password: 1234
+  host: db
+
+development:
+  <<: *default
+  database: merchantpay_development
+
+test:
+  <<: *default
+  database: merchantpay_test
+
+production:
+  <<: *default
+  database: merchantpay_production
+  username: merchantpay
+  password: <%= ENV['MERCHANTPAY_DATABASE_PASSWORD'] %>
