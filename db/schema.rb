@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 2019_12_05_124332) do
     t.text "name"
     t.text "description"
     t.string "email"
+    t.string "password_digest"
     t.integer "status", default: 0, null: false
-    t.decimal "total_transaction_sum", precision: 10, scale: 2
+    t.decimal "total_transaction_sum", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
