@@ -1,0 +1,2 @@
+class SettlementTransaction < Transaction
+end

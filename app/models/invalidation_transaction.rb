@@ -1,0 +1,2 @@
+class InvalidationTransaction < Transaction
+end

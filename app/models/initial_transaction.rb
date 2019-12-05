@@ -1,0 +1,2 @@
+class InitialTransaction < Transaction
+end
