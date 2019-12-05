@@ -1,10 +1,12 @@
 FactoryBot.define do
   factory :merchant do
-    name { "MyText" }
-    description { "MyText" }
-    email { "MyString" }
+    name { Faker::Name.first_name }
+    description { Faker::Lorem.sentence }
+    sequence(:email) { |n| "merchant#{n}@example.com" }
+  end
+
+  trait :inactive_merchant do
     status { 1 }
-    total_transaction_sum { "9.99" }
   end
 
   trait :with_transactions do

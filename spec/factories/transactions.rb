@@ -3,7 +3,6 @@ FactoryBot.define do
     merchant
     uuid { SecureRandom.uuid }
     amount { rand(100_000_00) / 100.0 }
-    status { 0 }
     type { '' }
   end
 
