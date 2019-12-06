@@ -5,7 +5,9 @@ class Merchant < ApplicationRecord
 
   paginates_per 10
 
-  has_many :transactions, dependent: :destroy
+  # https://github.com/rails/rails/issues/14365
+  has_many :transactions, dependent: :destroy,
+                          after_add: :recalculate_transactions_total_sum
 
   validates :email, uniqueness: { case_sensitive: false }
   validates :name, :description, :email, :status, presence: true
@@ -15,4 +17,13 @@ class Merchant < ApplicationRecord
             if: -> { new_record? || !password.nil? }
 
   enum status: STATUSES
+
+  private
+
+  # do we need to subtract refund transaction?
+  def recalculate_transactions_total_sum(_merchant)
+    total_amount = transactions.sum(:amount)
+
+    update_column(:total_transaction_sum, total_amount)
+  end
 end

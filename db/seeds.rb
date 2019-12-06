@@ -23,21 +23,24 @@ Merchant.create!(name: Faker::Name.first_name,
                               password: '11111111',
                               password_confirmation: '11111111')
 
-  initial_transaction = InitialTransaction.create!(amount: rand(100_000) / 100.0,
-                                                   status: Transaction::STATUSES.shuffle.last,
-                                                   merchant_id: merchant.id)
+  initial_transaction = merchant.transactions.create!(amount: rand(100_000) / 100.0,
+                                                      status: Transaction::STATUSES.shuffle.last,
+                                                      merchant_id: merchant.id,
+                                                      type: 'InitialTransaction')
 
-  settlement_transaction = SettlementTransaction.create!(amount: rand(100_000) / 100.0,
+  settlement_transaction = merchant.transactions.create!(amount: rand(100_000) / 100.0,
                                                          status: Transaction::STATUSES.shuffle.last,
                                                          reference_uuid: initial_transaction.reload.uuid,
-                                                         merchant_id: merchant.id)
+                                                         merchant_id: merchant.id,
+                                                         type: 'SettlementTransaction')
 
   next if i.even?
 
-  RefundTransaction.create!(amount: rand(100_000) / 100.0,
-                            status: Transaction::STATUSES.shuffle.last,
-                            reference_uuid: settlement_transaction.reload.uuid,
-                            merchant_id: merchant.id)
+  merchant.transactions.create!(amount: rand(100_000) / 100.0,
+                                status: Transaction::STATUSES.shuffle.last,
+                                reference_uuid: settlement_transaction.reload.uuid,
+                                merchant_id: merchant.id,
+                                type: 'RefundTransaction')
 end
 
 5.times do |i|
@@ -48,12 +51,14 @@ end
                               password: '11111111',
                               password_confirmation: '11111111')
 
-  initial_transaction = InitialTransaction.create!(amount: rand(100_000) / 100.0,
-                                                   status: Transaction::STATUSES.shuffle.last,
-                                                   merchant_id: merchant.id)
+  initial_transaction = merchant.transactions.create!(amount: rand(100_000) / 100.0,
+                                                      status: Transaction::STATUSES.shuffle.last,
+                                                      merchant_id: merchant.id,
+                                                      type: 'InitialTransaction')
 
-  InvalidationTransaction.create!(amount: rand(100_000) / 100.0,
-                                  status: Transaction::STATUSES.shuffle.last,
-                                  reference_uuid: initial_transaction.reload.uuid,
-                                  merchant_id: merchant.id)
+  merchant.transactions.create!(amount: rand(100_000) / 100.0,
+                                status: Transaction::STATUSES.shuffle.last,
+                                reference_uuid: initial_transaction.reload.uuid,
+                                merchant_id: merchant.id,
+                                type: 'InvalidationTransaction')
 end
