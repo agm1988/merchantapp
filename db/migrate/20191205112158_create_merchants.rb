@@ -6,6 +6,7 @@ class CreateMerchants < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :password_digest
       t.integer :status, null: false, default: 0
+      t.boolean :is_admin, null: false, default: false
       t.decimal :total_transaction_sum, precision: 10, scale: 2, default: 0
 
       t.timestamps
