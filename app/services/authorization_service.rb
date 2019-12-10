@@ -9,7 +9,7 @@ module AuthorizationService
 
       Applicative::Some.new(JsonWebToken.encode(payload))
     else
-      Applicative::None.new('not uathorized')
+      Applicative::None.new('Invalid credentials')
     end
 
   rescue => e

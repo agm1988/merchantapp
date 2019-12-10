@@ -10,6 +10,7 @@ module Api
       expose :description, documentation: { required: true }
       expose :email, documentation: { required: true }
       expose :status
+      expose :is_admin
       expose :total_transaction_sum
       expose :created_at
       expose :updated_at

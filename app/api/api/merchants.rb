@@ -19,7 +19,7 @@ module Api
                  desc: 'Page number'
       end
       get do
-        present(Merchant.all.page(params[:page]),
+        present(Merchant.order(:id).page(params[:page]),
                 with: Api::Entities::Merchant)
       end
 
@@ -104,7 +104,7 @@ module Api
           status 422
           {
             status: :unprocessable_entity,
-            errors: merchant.errors.messages
+            error: merchant.errors.full_messages
           }
         end
       end

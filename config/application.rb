@@ -11,6 +11,13 @@ module Merchantpay
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
+      end
+    end
+
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', 'api', 'api_helpers', '{**}')]
 

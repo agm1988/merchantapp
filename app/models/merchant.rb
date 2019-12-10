@@ -3,8 +3,6 @@ class Merchant < ApplicationRecord
 
   has_secure_password
 
-  paginates_per 10
-
   # https://github.com/rails/rails/issues/14365
   has_many :transactions, dependent: :destroy,
                           after_add: :recalculate_transactions_total_sum

@@ -8,6 +8,7 @@ module Api
       result = AuthorizationService.call(params)
 
       if result.some?
+        status 200
         { jwt: result.value }
       else
         error!(result.value, 401)
