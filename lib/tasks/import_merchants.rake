@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 
 desc 'Import merchants (path=path/to/file)'
@@ -8,9 +9,10 @@ task import_merchants: :environment do
 
   merchants.each do |merchant|
     begin
+      # merchant.to_hash can fail if inconsistent csv file
       m = Merchant.new(merchant.to_hash)
 
-      if m.save
+      if m.save!
         puts "Merchant #{m.inspect} saved!!!"
       else
         puts "Merchant not saved: #{m.inspect}"
