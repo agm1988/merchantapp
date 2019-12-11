@@ -12,3 +12,15 @@ RSpec.shared_examples 'entity' do
 
   it { is_expected.to expose(expected_fields) }
 end
+
+RSpec.shared_examples 'admin restricted area' do
+  specify 'request restricted' do
+    expect(last_response.status).to be 403
+  end
+
+  specify 'admin restricted message' do
+    resp = JSON.parse(last_response.body)
+
+    expect(resp['error']).to eq('Admin restricted')
+  end
+end

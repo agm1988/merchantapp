@@ -3,6 +3,8 @@ FactoryBot.define do
     name { Faker::Name.first_name }
     description { Faker::Lorem.sentence }
     sequence(:email) { |n| "merchant#{n}@example.com" }
+    password { 'secure pwd' }
+    password_confirmation { 'secure pwd' }
   end
 
   trait :inactive_merchant do
