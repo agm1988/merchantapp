@@ -11,6 +11,7 @@ module AuthorizationService
     else
       Applicative::None.new('Invalid credentials')
     end
+    # TODO: rescue only JWT errors
   rescue => e
     Applicative::None.new(e.message)
   end

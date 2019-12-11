@@ -18,11 +18,13 @@ task import_merchants: :environment do
         puts "Merchant not saved: #{m.inspect}"
         puts m.errors.full_messages
       end
+      # TODO: rescue particular errors
     rescue => e
       puts e.message
     end
   end
 
+  # TODO: rescue particular errors
 rescue => e
   puts e.message
 end
