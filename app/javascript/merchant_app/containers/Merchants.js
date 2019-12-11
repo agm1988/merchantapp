@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import axios from "axios";
+import axios from 'axios';
 import {apiUrl} from "../config";
 import {
   Typography,
   Paper,
 } from '@material-ui/core';
 import Merchant from './Merchant';
-import Transactions from "../components/Transactions";
+import Transactions from '../components/Transactions';
 
 class Merchants extends Component {
   constructor(props) {

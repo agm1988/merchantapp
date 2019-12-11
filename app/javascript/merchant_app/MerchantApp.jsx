@@ -30,12 +30,18 @@ class MerchantApp extends Component {
     });
   };
 
+  onLogout = () => {
+    this.setState({jwt: null})
+  }
+
   render() {
     const isAuthorized = this.state.jwt !== null;
 
     return(
       <Fragment>
-        <Header />
+        <Header
+          onLogout={this.onLogout}
+          isAuthorized={isAuthorized} />
         <Router>
           <div className='MerchantApp'>
             <Switch>
