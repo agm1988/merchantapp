@@ -14,4 +14,8 @@ FactoryBot.define do
       ecr.transactions << build(:transaction)
     end
   end
+
+  trait :admin_merchant do
+    is_admin { true }
+  end
 end
