@@ -33,6 +33,10 @@ class Merchant extends Component {
     this.props.deleteMerchant(this.props.merchant.id);
   };
 
+  onTransactionsClick = () => {
+    this.props.onOpenTransactionsDialog(this.props.merchant.id);
+  };
+
   render() {
     const descriptionBlank = this.state.description.trim() === '';
 
@@ -103,6 +107,9 @@ class Merchant extends Component {
           <Divider/>
           <ExpansionPanelActions>
             <Button onClick={this.deleteMerchant} size="small" color="secondary">Delete</Button>
+            <Button onClick={this.onTransactionsClick} variant="contained" size="small" color="primary">
+              Transactions
+            </Button>
             <Button size="small">Cancel</Button>
             <Button
               onClick={this.updateMerchant}

@@ -8,6 +8,7 @@ import {
   Paper,
 } from '@material-ui/core';
 import Merchant from './Merchant';
+import Transactions from "../components/Transactions";
 
 class Merchants extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Merchants extends Component {
     this.state = {
       merchants: [],
       errorMessage: null,
+      selectedMerchant: null,
     }
   };
 
@@ -76,15 +78,29 @@ class Merchants extends Component {
     });
   };
 
+  onOpenTransactionsDialog = (merchantId) => {
+    const merchant = this.state.merchants.find((merchant => {
+      return merchant.id === merchantId;
+    }));
+
+    this.setState({ selectedMerchant: merchant })
+  };
+
+  onCloseTransactionsDialog = () => {
+    this.setState({selectedMerchant: null});
+  }
+
   render() {
     if (!this.props.isAuthorized) {return (<Redirect to='/signin' />)};
+
     const noData = <Typography variant="subtitle1">No merchants to display</Typography>;
     const merchantsList = this.state.merchants.map(merchant => (
       <Merchant
         key={merchant.id}
         merchant={merchant}
         deleteMerchant={this.deleteMerchant}
-        updateMerchant={this.updateMerchant} />
+        updateMerchant={this.updateMerchant}
+        onOpenTransactionsDialog={this.onOpenTransactionsDialog} />
     ));
 
     return(
@@ -92,6 +108,10 @@ class Merchants extends Component {
         { this.state.errorMessage &&
           <div className="error_message">{this.state.errorMessage}</div>
         }
+
+        <Transactions
+          merchant={this.state.selectedMerchant}
+          onCloseTransactionsDialog={this.onCloseTransactionsDialog}/>
 
         <Typography variant="h4">Merchants</Typography>
         <Paper elevation={1} >
