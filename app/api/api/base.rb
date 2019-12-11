@@ -17,7 +17,7 @@ module Api
       end
 
       def current_merchant
-        @_current_merchant ||= authenticate!(headers)
+        @current_merchant ||= authenticate!(headers)
       end
     end
 
@@ -33,7 +33,7 @@ module Api
     use Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
+        resource '*', headers: :any, methods: %i[get post put delete options]
       end
     end
 

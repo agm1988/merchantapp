@@ -1,0 +1,29 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+    - 'config/**/*'
+    - 'coverage/**/*'
+    - 'Guardfile'
+    - 'Gemfile'
+    - 'Capfile'
+    - 'stubs/**/*'
+    - 'config.ru'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+Documentation:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/MethodLength:
+  Max: 16
+Metrics/PerceivedComplexity:
+  Max: 9
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'resources']
+Style/FrozenStringLiteralComment:
+  Enabled: false

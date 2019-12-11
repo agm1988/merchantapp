@@ -14,10 +14,6 @@ module Api
       end
 
       desc 'shows all available merchants'
-      params do
-        optional :page, type: Integer,
-                 desc: 'Page number'
-      end
       get do
         present(Merchant.order(:id).page(params[:page]),
                 with: Api::Entities::Merchant)
@@ -37,7 +33,7 @@ module Api
                  values: %w[active inactive],
                  desc: 'Merchant Status'
         requires :name,
-                type: String
+                 type: String
         requires :description,
                  type: String
         requires :email,

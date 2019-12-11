@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Api
   class Transactions < Grape::API
     version 'v1', using: :header, vendor: 'merchantpay'
@@ -12,7 +13,7 @@ module Api
       params do
         requires :status,
                  type: String,
-                 values: %w(processed error)
+                 values: %w[processed error]
         requires :amount,
                  type: BigDecimal
         optional :type,
