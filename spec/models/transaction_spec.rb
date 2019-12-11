@@ -1,5 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  specify do
+    expect(build(:transaction)).to be_valid
+  end
+
+  it 'associations' do
+    expect(subject).to belong_to(:merchant)
+    expect(subject).to belong_to(:reference).optional
+    expect(subject).to have_one(:dependent)
+  end
+
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:amount) }
+    it { is_expected.to validate_presence_of(:status) }
+  end
 end
