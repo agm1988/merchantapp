@@ -12,7 +12,7 @@ module Api
         result.value
       end
 
-      def authenticate_admin!(headers)
+      def authenticate_admin!(_headers)
         error!('Admin restricted', 403) unless current_merchant.is_admin?
       end
 
