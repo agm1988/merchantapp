@@ -11,7 +11,7 @@ describe Api::Merchants, type: :api do
 
   let!(:merchant) do
     create(:merchant,
-           email: 'merchant@example.com',)
+           email: 'merchant@example.com')
   end
 
   let!(:second_merchant) { create(:merchant) }
