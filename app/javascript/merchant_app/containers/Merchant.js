@@ -33,6 +33,10 @@ class Merchant extends Component {
     this.props.deleteMerchant(this.props.merchant.id);
   };
 
+  editCancel = () => {
+    this.setState({...this.props.merchant});
+  };
+
   onTransactionsClick = () => {
     this.props.onOpenTransactionsDialog(this.props.merchant.id);
   };
@@ -84,9 +88,6 @@ class Merchant extends Component {
                   name='status'
                   value={this.state.status}
                   onChange={this.handleChange}>
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
                   <MenuItem value='active'>Active</MenuItem>
                   <MenuItem value='inactive'>Inactive</MenuItem>
                 </Select>
@@ -110,7 +111,7 @@ class Merchant extends Component {
             <Button onClick={this.onTransactionsClick} variant="contained" size="small" color="primary">
               Transactions
             </Button>
-            <Button size="small">Cancel</Button>
+            <Button onClick={this.editCancel} size="small">Cancel</Button>
             <Button
               onClick={this.updateMerchant}
               disabled={descriptionBlank}
