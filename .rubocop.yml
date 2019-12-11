@@ -25,8 +25,8 @@ Metrics/PerceivedComplexity:
   Max: 9
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'resources']
-Style/FrozenStringLiteralComment:
-  Enabled: false
+#Style/FrozenStringLiteralComment:
+#  Enabled: false
 Style/EmptyMethod:
   Enabled: false
 Style/BlockComments:

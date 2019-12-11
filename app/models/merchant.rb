@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Merchant < ApplicationRecord
   STATUSES = %i[active inactive].freeze
 

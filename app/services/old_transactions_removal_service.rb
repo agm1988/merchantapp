@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OldTransactionsRemovalService
   def self.call
     time = Time.zone.now - 1.hour
