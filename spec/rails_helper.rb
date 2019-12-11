@@ -5,7 +5,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+if Rails.env.production?
+  abort('The Rails environment is running in production mode!')
+end
+
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
@@ -51,15 +54,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.include FactoryBot::Syntax::Methods
 
-
-
-
   # Grape API
-  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: %r{spec/api}
+  config.include RSpec::Rails::RequestExampleGroup,
+                 type: :request, file_path: %r{spec/api}
   config.include Rack::Test::Methods, type: :api
-
-
-
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

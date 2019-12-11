@@ -64,7 +64,8 @@ describe Api::Merchants, type: :api do
         expect(resp['email']).to eq(merchant.email)
         expect(resp['status']).to eq(merchant.status)
         expect(resp['is_admin']).to eq(merchant.is_admin)
-        expect(resp['total_transaction_sum']).to eq(merchant.total_transaction_sum.to_s)
+        expect(resp['total_transaction_sum'])
+          .to eq(merchant.total_transaction_sum.to_s)
         expect(resp['transactions']).to eq([])
       end
     end
@@ -83,7 +84,7 @@ describe Api::Merchants, type: :api do
     context 'authorized admin' do
       before do
         authenticate_headers_for(admin)
-        put "/api/v1/merchants/#{merchant.id}", { name: 'updated' }
+        put "/api/v1/merchants/#{merchant.id}", name: 'updated'
       end
 
       specify 'response successfull' do
@@ -98,7 +99,7 @@ describe Api::Merchants, type: :api do
     context 'authorized merchant' do
       before do
         authenticate_headers_for(merchant)
-        put "/api/v1/merchants/#{merchant.id}", { name: 'updated' }
+        put "/api/v1/merchants/#{merchant.id}", name: 'updated'
       end
 
       it_behaves_like 'admin restricted area'
