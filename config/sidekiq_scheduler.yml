@@ -1,0 +1,6 @@
+delete_old_transactions:
+  cron: "0 * * * *"
+  class: RecurringOldTransactionsRemoval
+  queue: default
+  args:
+  description: 'This job deletes old transactions'

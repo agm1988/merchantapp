@@ -19,6 +19,8 @@ module Merchantpay
     end
 
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir[Rails.root.join('app', 'services', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'runners', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'api', 'api', 'api_helpers', '{**}')]
 
     # Settings in config/environments/* take precedence over those specified here.
