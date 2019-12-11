@@ -55,7 +55,7 @@ describe Api::Merchants, type: :api do
         expect(last_response.status).to be 200
       end
 
-      specify 'returns merchants list' do
+      specify 'returns merchant\'s data' do
         resp = JSON.parse(last_response.body)
 
         expect(resp['id']).to eq(merchant.id)
@@ -90,7 +90,7 @@ describe Api::Merchants, type: :api do
         expect(last_response.status).to be 200
       end
 
-      specify 'returns merchants list' do
+      specify 'updates merchant' do
         expect(merchant.reload.name).to eq('updated')
       end
     end
@@ -117,7 +117,7 @@ describe Api::Merchants, type: :api do
         expect(last_response.status).to be 200
       end
 
-      specify 'returns merchants list' do
+      specify 'delete merchant' do
         expect { delete "/api/v1/merchants/#{merchant.id}" }
           .to change(Merchant, :count).by(-1)
       end

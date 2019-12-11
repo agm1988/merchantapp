@@ -37,11 +37,11 @@ describe Api::Auth, type: :api do
         let(:email) { admin.email }
 
         context 'with valid params' do
-          it 'is successful' do
+          specify 'is successful' do
             expect(last_response).to be_successful
           end
 
-          it 'has authentication_token' do
+          specify 'has authentication_token' do
             resp = JSON.parse(last_response.body)
 
             expect(resp['jwt']).to be_present
@@ -54,11 +54,11 @@ describe Api::Auth, type: :api do
         let(:password) { 'secure pwd' }
 
         context 'with valid params' do
-          it 'is successful' do
+          specify 'is successful' do
             expect(last_response).to be_successful
           end
 
-          it 'has authentication_token' do
+          specify 'has authentication_token' do
             resp = JSON.parse(last_response.body)
 
             expect(resp['jwt']).to be_present
