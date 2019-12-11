@@ -15,4 +15,7 @@ class Transaction < ApplicationRecord
   validates :amount, :status, presence: true
 
   enum status: STATUSES
+
+  scope :processed, -> { where(status: :processed) }
+  scope :error, -> { where(status: :error) }
 end

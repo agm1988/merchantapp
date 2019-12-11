@@ -16,6 +16,9 @@ class Merchant < ApplicationRecord
 
   enum status: STATUSES
 
+  scope :active, -> { where(status: :active) }
+  scope :inactive, -> { where(status: :inactive) }
+
   private
 
   # do we need to subtract refund transaction?
