@@ -11,7 +11,6 @@ module AuthorizationService
     else
       Applicative::None.new('Invalid credentials')
     end
-
   rescue => e
     Applicative::None.new(e.message)
   end
